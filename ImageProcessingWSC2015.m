@@ -15,7 +15,9 @@
 BeginPackage["ImageProcessingWSC2015`"];
 (* Exported symbols added here with SymbolName::usage *)
 
-cropToPlanet::usage = "";
+MagnifyImage::usage = "MagnifyImage[img, zoom] resizes \"img\" to \"zoom\" times its original dimensions";
+CropToPlanet::usage = "CropToPlanet[img, pad] crops \"img\" to the bounding box of the first component with \"pad\"
+ extra pixels of padding.";
 
 Begin["`Private`"]; (* Begin Private Context *)
 
