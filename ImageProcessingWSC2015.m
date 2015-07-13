@@ -21,9 +21,9 @@ CropToPlanet::usage = "CropToPlanet[img, pad] crops \"img\" to the bounding box 
 
 Begin["`Private`"]; (* Begin Private Context *)
 
-magnify[img_Image, z_] := With[{dim = ImageDimensions[img]}, ImageResize[img, z dim]];
+MagnifyImage[img_Image, z_] := With[{dim = ImageDimensions[img]}, ImageResize[img, z dim]];
 
-cropToPlanet[img_Image, pad_] := Module[
+CropToPlanet[img_Image, pad_] := Module[
   {extend, box},
   extend = {#1 - {pad, pad}, #2 + {pad, pad}} &;
   box = 1 /. ComponentMeasurements[img, "BoundingBox"];
@@ -31,5 +31,7 @@ cropToPlanet[img_Image, pad_] := Module[
 ];
 
 End[]; (* End Private Context *)
+
+Names["ImageProcessingWSC2015`*"]
 
 EndPackage[];
