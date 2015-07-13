@@ -12,11 +12,22 @@
 (* :Keywords:                  *)
 (* :Discussion:                *)
 
-BeginPackage["ImageProcessingWSC2015`"]
+BeginPackage["ImageProcessingWSC2015`"];
 (* Exported symbols added here with SymbolName::usage *)
 
-Begin["`Private`"] (* Begin Private Context *)
+cropToPlanet::usage = "";
 
-End[] (* End Private Context *)
+Begin["`Private`"]; (* Begin Private Context *)
 
-EndPackage[]
+magnify[img_Image, z_] := With[{dim = ImageDimensions[img]}, ImageResize[img, z dim]];
+
+cropToPlanet[img_Image, pad_] := Module[
+  {extend, box},
+  extend = {#1 - {pad, pad}, #2 + {pad, pad}} &;
+  box = 1 /. ComponentMeasurements[img, "BoundingBox"];
+  ImageTrim[img, extend @@ box]
+];
+
+End[]; (* End Private Context *)
+
+EndPackage[];
